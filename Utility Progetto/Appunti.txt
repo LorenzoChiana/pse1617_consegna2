@@ -1,0 +1,14 @@
+Possibili stati:
+
+1. Stato di quiete (Vuoto, nessuna persona dentro)
+2. Led uno attivo (Una persona è entrata e ha fatto scattare il pir PIR=1)
+3. Led due pulsa per 5 secondi 4 pulsazioni al secondo (La persona si avvicina e raggiunge Dmin poi si allontana esce da Dmax)
+4. Pulizia WC Led rosso acceso 10 secondi
+5. Messaggio seriale (Stato 4 e viene rilevata una persona)
+6. Led 3 lampeggiante, messaggio al pc di allarme
+   (Una persona è dentro e non si muove per piu di Tmax secondi)
+   (Viene premuto il tasto T1 per più di due secondi)
+7. RESTITUIRE UN COUNTER NPERSONE, RESTITUIRE UN VALORE STATO (Richiesta da pc)
+
+
+Utilizzare un approccio a task, con modello di comportamento basato su macchine a stati finiti sincrone.
