@@ -12,3 +12,9 @@ Possibili stati:
 
 
 Utilizzare un approccio a task, con modello di comportamento basato su macchine a stati finiti sincrone.
+
+
+Cose interessanti
+Slide 3.1: Pagina 27, 30
+Slide 3.2: Pagina 8, 13, 37
+Slide 3.3: Pagina 3, 6 (Diagramma a stati con i vari task), 15, 22, 26 (Esempio)
