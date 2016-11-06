@@ -62,3 +62,14 @@ bool GlobalState::getFlush(){
 	return this->flush;
 }
 
+int GlobalState::getUsers(){
+	return this->nUsers;
+}
+
+void GlobalState::incUsers(){
+	this->nUsers++;
+}
+
+void GlobalState::resetUsers(){
+	this->nUsers=0;
+}

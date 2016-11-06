@@ -39,6 +39,10 @@ public:
   void setFlush(bool value);
   bool getFlush();
 
+  int getUsers();
+  void incUsers();
+  void resetUsers();
+
 };
 
 #endif
