@@ -4,11 +4,9 @@
 #include "Task.h"
 #include "Led.h"
 
-class AlarmTask: public Task {
-	int pin;
-	Led* led;	
+class AlarmTask: public Task {	
 public:
-	AlarmTask(int pin);  
+	AlarmTask();  
 	void init(int period);  
 	void tick();
 };

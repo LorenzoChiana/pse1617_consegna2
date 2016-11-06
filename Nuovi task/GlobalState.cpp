@@ -40,5 +40,3 @@ bool GlobalState::getPresence(){
 float GlobalState::getDistance(){
 	return this->distance;
 }
-
-

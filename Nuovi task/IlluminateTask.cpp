@@ -5,7 +5,7 @@ IlluminateTask::IlluminateTask(int pin){
 	this->pin = pin;
 }
 
-void DetectMotionTask::init(int period){
+void IlluminateTask::init(int period){
 	Task::init(period);
 	led = new Led(this->pin); 
 
@@ -13,7 +13,7 @@ void DetectMotionTask::init(int period){
 	currentState = prevState = 0;
 }
 
-void DetectMotionTask::tick(){
+void IlluminateTask::tick(){
 
 	bool isTurendOff = (currentState == false && prevState == true);
 	if (isTurendOff){
