@@ -7156,10 +7156,10 @@
 							"containerExtending": false,
 							"left": 280,
 							"top": 400,
-							"width": 81,
+							"width": 97,
 							"height": 38,
 							"autoResize": false,
-							"text": "init = millis()",
+							"text": "prev = millis()",
 							"wordWrap": true
 						},
 						{
