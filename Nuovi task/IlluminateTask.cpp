@@ -2,20 +2,37 @@
 #include "Arduino.h"
 
 IlluminateTask::IlluminateTask(int pin){
-	this.pin = pin;
+	this->pin = pin;
 }
 
 void DetectMotionTask::init(int period){
 	Task::init(period);
-	led = new Led(this.pin);    
+	led = new Led(this->pin); 
+
+	currentTime = initialTime = 0;
+	currentState = prevState = 0;
 }
 
 void DetectMotionTask::tick(){
+
+	bool isTurendOff = (currentState == false && prevState == true);
+	if (isTurendOff){
+		currentTime = initialTime = millis();
+	}
+
 	if (Global.getPresence()){
 		led->switchOn();
+
+		prevState = currentState;
+		currentState = true;
 	} else {
-		prev = current;
-		current = millis();
-		//Todo
+		currentTime = millis();
+		if (currentTime - initialTime > 10000){
+			led->switchOff();			
+		}
+		prevState = currentState;
+		currentState = false;
 	}
+	
 }
+

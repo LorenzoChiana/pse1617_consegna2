@@ -21,6 +21,9 @@ void GlobalState::setFlush(bool value){
 void GlobalState::setAlarm(bool value){
 	this.alarmState = value;
 }
+bool getAlarm(){
+	return this.alarmState;
+}
 
 void GlobalState::setCleaning(bool value){
 	this.cleaningState = value;
@@ -28,6 +31,10 @@ void GlobalState::setCleaning(bool value){
 
 bool GlobalState::getPresence(){
 	return (pirState || prossimityState);
+}
+
+float getDistance(){
+	return this.distance;
 }
 
 

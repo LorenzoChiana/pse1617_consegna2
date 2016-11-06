@@ -6,9 +6,10 @@
 
 class DetectPresenceTask: public Task {
 	int echoPin, triggerPin;
+	bool isNear;
+
 	Sonar* proximitySensor;
 public:
-
 	DetectPresenceTask(int echoPin, int triggerPin);  
 	void init(int period);  
 	void tick();

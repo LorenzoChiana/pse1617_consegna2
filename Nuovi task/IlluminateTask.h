@@ -7,7 +7,10 @@
 class IlluminateTask: public Task {
 	int pin;
 	Led* led;
-	long current, prev;
+
+	long currentTime, initialTime;
+	bool currentState, prevState;
+	
 public:
 
 	IlluminateTask(int pin);  
