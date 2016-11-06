@@ -13,7 +13,7 @@ class FadeTask: public Task {
 	//counting 0,25 seconds
 	long prevTime;
 
-	bool currentState, prevState;
+	bool currentState, prevState, fade;
 public:
 
 	FadeTask(int pin, int intensity);  

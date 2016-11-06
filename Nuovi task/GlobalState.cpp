@@ -33,6 +33,10 @@ void GlobalState::setCleaning(bool value){
 	this->cleaningState = value;
 }
 
+bool GlobalState::isCleaning(){
+	return this->cleaningState;
+}
+
 bool GlobalState::getPresence(){
 	return (this->pirState || this->prossimityState);
 }
