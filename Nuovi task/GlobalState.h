@@ -26,7 +26,7 @@ public:
   bool getAlarm();
 
   void setFlush(bool value);
-  
+  bool getFlush();
 
 };
 

@@ -8,33 +8,37 @@ void GlobalState::init(int period){
 }
 
 void GlobalState::setMotion(bool value){
-	this.pirState = value;
+	this->pirState = value;
 }
 
 void GlobalState::setProssimity(bool value){
-	this.prossimityState = value;
+	this->prossimityState = value;
 }
 void GlobalState::setFlush(bool value){
-	this.flush = value;
+	this->flush = value;
+}
+
+bool GlobalState::getFlush(){
+	return this->flush;
 }
 
 void GlobalState::setAlarm(bool value){
-	this.alarmState = value;
+	this->alarmState = value;
 }
-bool getAlarm(){
-	return this.alarmState;
+bool GlobalState::getAlarm(){
+	return this->alarmState;
 }
 
 void GlobalState::setCleaning(bool value){
-	this.cleaningState = value;
+	this->cleaningState = value;
 }
 
 bool GlobalState::getPresence(){
-	return (pirState || prossimityState);
+	return (this->pirState || this->prossimityState);
 }
 
-float getDistance(){
-	return this.distance;
+float GlobalState::getDistance(){
+	return this->distance;
 }
 
 
