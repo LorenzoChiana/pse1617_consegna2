@@ -5,10 +5,22 @@
 #include "Led.h"
 
 class AlarmTask: public Task {	
+	float differenceThreshold;
+	float currentDistance, prevDistance;
+	long currentTime, initialTime;
+	int errorCounter;
+
+	bool firstAlarm;
+	char alarmMsg [] = "Alarm!";
+
+	void checkMovement();
+	void checkAlarmInput();
+	void checkAlarmStop();
 public:
-	AlarmTask();  
+	AlarmTask(float differenceThreshold);  
 	void init(int period);  
 	void tick();
+
 };
 
 #endif

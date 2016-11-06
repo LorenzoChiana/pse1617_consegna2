@@ -3,7 +3,7 @@
 
 GlobalState::GlobalState(int pin){
 }
-  
+
 void GlobalState::init(int period){
 }
 
@@ -14,12 +14,13 @@ void GlobalState::setMotion(bool value){
 void GlobalState::setProssimity(bool value){
 	this->prossimityState = value;
 }
-void GlobalState::setFlush(bool value){
-	this->flush = value;
+
+bool GlobalState::getPresence(){
+	return (this->pirState || this->prossimityState);
 }
 
-bool GlobalState::getFlush(){
-	return this->flush;
+float GlobalState::getDistance(){
+	return this->distance;
 }
 
 void GlobalState::setAlarm(bool value){
@@ -27,6 +28,22 @@ void GlobalState::setAlarm(bool value){
 }
 bool GlobalState::getAlarm(){
 	return this->alarmState;
+}
+
+void GlobalState::setAlarmInput(bool value){
+	this->alarmInput=value;
+}
+
+bool GlobalState::getAlarmInput(){
+	return this->alarmInput;
+}
+
+void GlobalState::setAlarmStop(bool value){
+	this->alarmStop=value;
+}
+
+bool GlobalState::getAlarmStop(){
+	return this->alarmStop;
 }
 
 void GlobalState::setCleaning(bool value){
@@ -37,10 +54,11 @@ bool GlobalState::isCleaning(){
 	return this->cleaningState;
 }
 
-bool GlobalState::getPresence(){
-	return (this->pirState || this->prossimityState);
+void GlobalState::setFlush(bool value){
+	this->flush = value;
 }
 
-float GlobalState::getDistance(){
-	return this->distance;
+bool GlobalState::getFlush(){
+	return this->flush;
 }
+

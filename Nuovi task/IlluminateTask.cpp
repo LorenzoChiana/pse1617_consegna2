@@ -19,7 +19,6 @@ void IlluminateTask::tick(){
 	if (isTurendOff){
 		currentTime = initialTime = millis();
 	}
-
 	if (Global.getPresence()){
 		led->switchOn();
 

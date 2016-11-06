@@ -10,9 +10,8 @@ class IlluminateTask: public Task {
 
 	long currentTime, initialTime;
 	bool currentState, prevState;
-	
-public:
 
+public:
 	IlluminateTask(int pin);  
 	void init(int period);  
 	void tick();

@@ -9,7 +9,13 @@ class GlobalState {
   bool alarmState;
 
   float distance;
-  bool flush; 
+  bool flush;
+
+  int alarmInput;
+  int alarmStop; 
+
+  int nUses;
+
 public:
 
   GlobalState();  
@@ -22,8 +28,13 @@ public:
   float getDistance();
 
   void setCleaning(bool value);  
+
   void setAlarm(bool value);
   bool getAlarm();
+  void setAlarmInput(bool value);
+  bool getAlarmInput();
+  void setAlarmStop(bool value);
+  bool getAlarmStop();
 
   void setFlush(bool value);
   bool getFlush();
