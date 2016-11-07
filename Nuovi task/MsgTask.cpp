@@ -4,7 +4,7 @@
 MsgTask::MsgTask(){
 }
 
-void DetectMotionTask::init(int period){
+void MsgTask::init(int period){
 	Task::init(period);	
 	MsgService.init();
 }

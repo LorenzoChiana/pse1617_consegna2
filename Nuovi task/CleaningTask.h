@@ -1,13 +1,13 @@
-#ifndef __MSGTASK__
-#define __MSGTASK__
+#ifndef __CLEANINGTASK__
+#define __CLEANINGTASK__
 
 #include "Task.h"
 
-class MsgTask: public Task {	
+class CleaningTask: public Task {	
 	char* getUsers();
 	char* getState();
 public:
-	MsgTask(float differenceThreshold);  
+	CleaningTask();  
 	void init(int period);  
 	void tick();
 };

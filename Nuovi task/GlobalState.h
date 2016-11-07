@@ -15,7 +15,9 @@ class GlobalState {
   int alarmStop; 
 
   int nUses;
-
+  char writingBuffer[];
+  bool bufferAvalible;
+  
 public:
 
   GlobalState();  

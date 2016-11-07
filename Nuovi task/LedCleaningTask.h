@@ -4,13 +4,12 @@
 #include "Task.h"
 #include "Led.h"
 
-class IlluminateTask: public Task {
+class LedCleaningTask: public Task {
 	int pin;
 	Led* led;
 	
 public:
-
-	IlluminateTask(int pin);  
+	LedCleaningTask(int pin);  
 	void init(int period);  
 	void tick();
 };
