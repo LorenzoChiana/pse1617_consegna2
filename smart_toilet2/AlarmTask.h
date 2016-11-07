@@ -1,7 +1,7 @@
 #ifndef __ALARMTASK__
 #define __ALARMTASK__
 
-#include "../Task.h"
+#include "Task.h"
 
 class AlarmTask: public Task {	
 	float differenceThreshold;

@@ -13,7 +13,7 @@
 Scheduler sched;
 
 void setup() {
-  float f = 0.3;
+  float f = 0.1;
   sched.init(20);
   Task* alarmTask = new AlarmTask(f);
   alarmTask->init(20);
