@@ -54,7 +54,7 @@ void FadeTask::tick(){
 		// dopo 5 secondi smette lo sciacquone
 		if (currentTime - initialTime > 5000){
 			led->switchOff();	
-			Global.setFlush() = false;	
+			Global.setFlush(false);	
 			prevState = currentState;
 			currentState = false;	
 		}
