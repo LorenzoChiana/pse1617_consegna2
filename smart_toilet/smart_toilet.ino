@@ -1,34 +1,24 @@
-#include "Led.h"
-#include "LedExt.h"
-#include "MotionDetector.h"
-#include "PIRSensor.h"
-#include "ProximitySensor.h"
-#include "Sonar.h"
+#include "tasks/AlarmTask.h"
+#include "tasks/GlobalState.h"
+#include "tasks/CleaningTask.h"
+#include "tasks/DetectMotionTask.h"
+#include "tasks/DetectPresenceTask.h"
+#include "tasks/FadeTask.h"
+#include "tasks/IlluminateTask.h"
+#include "tasks/LedCleaningTask.h"
+#include "tasks/MsgTask.h"
 #include "config.h"
-#include "blink.h"
+#include "Scheduler.h"
 
-int brightness;
-int fadeAmount;
-
-Light* led1;
-Light* led3;
-LightExt* led2;
-MotionDetector* pir;
-ProximitySensor* proxSensor;
+Scheduler sched;
 
 void setup() {
-  led1 = new Led(L1_PIN);
-  
-  //inizializzazione sciacquone
-  brightness = 0;
-  fadeAmount = 5;
-  led2 = new LedExt(L2_PIN,brightness); 
-  
-  led3 = new Led(L3_PIN); 
-  
-  pir = new PIRSensor(PIR_PIN);
-  
-  proxSensor = new Sonar(ECHO_PIN, TRIG_PIN);
+  float f = 0.3;
+  sched.init(20);
+  Task* alarmTask = new AlarmTask(f);
+  alarmTask->init(20);
+  sched.addTask(alarmTask);
+
 }
 
 void loop() {
