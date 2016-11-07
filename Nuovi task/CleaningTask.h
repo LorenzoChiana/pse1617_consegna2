@@ -6,8 +6,8 @@
 class CleaningTask: public Task {	
 
 	long currentTime, initialTime;
-	bool currentState, prevState;
-	bool executeCleaning;
+	//bool currentState, prevState;
+	bool executeCleaning, firstTime, userEntered;
 public:
 	CleaningTask();  
 	void init(int period);  

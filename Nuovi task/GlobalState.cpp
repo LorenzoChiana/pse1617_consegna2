@@ -66,6 +66,10 @@ int GlobalState::getUsers(){
 	return this->nUsers;
 }
 
+int GlobalState::setUsers(int nUsers){
+	this->nUsers = nUsers;
+}
+
 void GlobalState::incUsers(){
 	this->nUsers++;
 }
