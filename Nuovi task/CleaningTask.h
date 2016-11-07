@@ -4,8 +4,10 @@
 #include "Task.h"
 
 class CleaningTask: public Task {	
-	char* getUsers();
-	char* getState();
+
+	long currentTime, initialTime;
+	bool currentState, prevState;
+	bool executeCleaning;
 public:
 	CleaningTask();  
 	void init(int period);  
