@@ -1,5 +1,6 @@
 #include "ButtonImpl.h"
 #include "Arduino.h"
+#include "StopAlarmTask.h"
 
 StopAlarmTask::StopAlarmTask(int pin, GlobalState *Global){
   this->pin = pin;  

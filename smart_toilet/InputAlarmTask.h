@@ -10,7 +10,7 @@ class InputAlarmTask: public Task {
   Button* button;
   GlobalState *Global;
   bool currentState, prevState;
-  long initialTime, prevTime;
+  long initialTime, currentTime;
 public:
   InputAlarmTask(int pin, GlobalState *Global);  
   void init(int period);  
