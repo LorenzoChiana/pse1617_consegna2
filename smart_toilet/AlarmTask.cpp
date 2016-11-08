@@ -21,7 +21,7 @@ void AlarmTask::tick(){
 		checkAlarmInput();
 	} else {
 		if (this->firstAlarm){
-			//Global->writeBuffer(this->alarmMsg); //TODO
+			Global->setWritingBuffer("Allarmee!");
 			this->firstAlarm = false;
 		}
 		checkAlarmStop();

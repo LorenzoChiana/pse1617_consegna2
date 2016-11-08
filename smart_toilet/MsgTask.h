@@ -11,7 +11,7 @@ class MsgTask: public Task {
 	void flushBuffer();
 	GlobalState *Global;
 public:
-	MsgTask(/*float differenceThreshold,*/ GlobalState *Global);  
+	MsgTask(GlobalState *Global);  
 	void init(int period);  
 	void tick();
 };

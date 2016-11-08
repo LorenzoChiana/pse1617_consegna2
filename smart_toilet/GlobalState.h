@@ -16,7 +16,7 @@ class GlobalState {
 
   int nUsers;
   int period;
-  char writingBuffer[];
+  char writingBuffer[20];
   bool bufferAvalible;
 public:
   GlobalState();  
@@ -44,6 +44,9 @@ public:
   void incUsers();
   void resetUsers();
   void setDistance(float distance);
+
+  void setWritingBuffer(char* s);
+  char* getWritingBuffer();
 };
 
 #endif

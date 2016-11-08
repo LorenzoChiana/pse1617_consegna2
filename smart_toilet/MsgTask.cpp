@@ -22,6 +22,8 @@ void MsgTask::tick(){
 		}
 		delete msg;
 	}
+
+	flushBuffer();
 }
 
 char* MsgTask::getUsers(){
@@ -32,22 +34,26 @@ char* MsgTask::getUsers(){
 }
 
 char* MsgTask::getState(){
+  char state[10];
 	if (Global->getPresence()){
-		return "Occupato";
+    strcpy(state,"Occupato");	
 	} else if (Global->getAlarm()){
-		return "Allarme";
+		strcpy(state,"Allarme");  
 	} else {
-		return "Libero";
+    strcpy(state,"Libero"); 
 	}
+
+ return state;
 
 
 }	
 
-/*void MsgTask::flushBuffer(){
-	
+void MsgTask::flushBuffer(){
+	char* emptyString = "";
 	char* output = Global->getWritingBuffer();
-	MsgService.sendMsg(output);
-
-	Global->setWritingBuffer("");
-}*/
+	if (strcmp(Global->getWritingBuffer(),emptyString)!=0){
+		MsgService.sendMsg(output);		
+		Global->setWritingBuffer(" ");
+	}
+}
 

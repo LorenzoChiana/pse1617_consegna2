@@ -1,4 +1,5 @@
 #include "GlobalState.h"
+#include <string.h>
 #include "Arduino.h"
 
 GlobalState::GlobalState(){
@@ -77,4 +78,12 @@ void GlobalState::incUsers(){
 
 void GlobalState::resetUsers(){
 	this->nUsers=0;
+}
+
+void GlobalState::setWritingBuffer(char* s){
+	strcpy(this->writingBuffer,s);
+}
+
+char* GlobalState::getWritingBuffer(){
+	return this->writingBuffer;
 }

@@ -3,7 +3,7 @@
 #include "Arduino.h"
 
 CleaningTask::CleaningTask(GlobalState *Global){
-  this->Global = Global;
+	this->Global = Global;
 }
 
 void CleaningTask::init(int period){
@@ -13,7 +13,7 @@ void CleaningTask::init(int period){
 	//currentState = prevState = 0;
 	executeCleaning = false;
 	firstTime = true;
-  userEntered = false;
+	userEntered = false;
 
 }
 
@@ -21,9 +21,8 @@ void CleaningTask::tick(){
 	if (Global->getUsers()%10==0 && executeCleaning){
 		if (Global->getPresence()) {
 			noInterrupts();
-			/*
-				MANDARE MESSAGGIO!!!
-			*/
+			
+			Global->setWritingBuffer("Si prega di uscire, toilette in fase di auto-pulizia");
 			interrupts();
 		} 
 
@@ -34,7 +33,7 @@ void CleaningTask::tick(){
 			currentTime = initialTime = millis();
 			noInterrupts();
 			Global->setCleaning(true);
-  		interrupts();
+			interrupts();
 		}
 		
 		currentTime = millis();
@@ -42,7 +41,7 @@ void CleaningTask::tick(){
 		if (currentTime - initialTime >= 10000){
 			noInterrupts();
 			Global->setCleaning(false);
-  		interrupts();
+			interrupts();
 		}
 
 		firstTime = false;
@@ -61,8 +60,8 @@ void CleaningTask::tick(){
 	//utente esce
 	if(!Global->getPresence() && userEntered) {
 		noInterrupts();
-  	Global->incUsers();
+		Global->incUsers();
 		userEntered = false;
-  	interrupts();
+		interrupts();
 	}
 }
