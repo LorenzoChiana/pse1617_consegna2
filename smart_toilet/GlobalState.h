@@ -11,8 +11,9 @@ class GlobalState {
   float distance;
   bool flush;
 
-  int alarmInput;
-  int alarmStop; 
+  bool alarmInput;
+  bool alarmStop; 
+
   int nUsers;
   int period;
   char writingBuffer[];
