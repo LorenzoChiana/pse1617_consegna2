@@ -12,6 +12,8 @@ void DetectMotionTask::init(int period){
 }
   
 void DetectMotionTask::tick(){
+	/*Serial.print("pir: ");
+	Serial.println(pir->detected());*/
   if (pir->detected()) {
     Global->setMotion(true);
   } else {

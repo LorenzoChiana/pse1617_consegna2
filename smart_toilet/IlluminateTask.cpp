@@ -15,7 +15,7 @@ void IlluminateTask::init(int period){
 }
 
 void IlluminateTask::tick(){
-
+	
 	bool isTurendOff = (currentState == false && prevState == true);
 	if (isTurendOff){
 		currentTime = initialTime = millis();
@@ -25,9 +25,11 @@ void IlluminateTask::tick(){
 
 		prevState = currentState;
 		currentState = true;
+		// inizio a contare da quando me ne vado
+		initialTime = millis();
 	} else {
 		currentTime = millis();
-		if (currentTime - initialTime > 10000){
+		if ((currentTime - initialTime >= 10000) && !isTurendOff){
 			led->switchOff();			
 		}
 		prevState = currentState;

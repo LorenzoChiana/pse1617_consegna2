@@ -4,6 +4,7 @@ Scheduler sched;
 GlobalState *Global;
 
 void setup() {
+  Serial.begin(9600);
   Global = new GlobalState();
   sched.init(20);
 
@@ -35,12 +36,6 @@ void setup() {
   ledCleaningTask->init(20);
   sched.addTask(ledCleaningTask);*/
 
-  /*
-    L1 che simula la luce
-  */
-  Task* illuminateTask = new IlluminateTask(L1_PIN, Global);
-  illuminateTask->init(20);
-  sched.addTask(illuminateTask);
 
   /*
     L2 che simula lo sciacquone
@@ -52,9 +47,17 @@ void setup() {
   /*
     sencore ad ultra suoni che rileva la vicinanza al water dell'utente
   */
-  /*Task* detectPresenceTask = new DetectPresenceTask(ECHO_PIN, TRIG_PIN,Global);
+  Task* detectPresenceTask = new DetectPresenceTask(ECHO_PIN, TRIG_PIN,Global);
   detectPresenceTask->init(20);
-  sched.addTask(detectPresenceTask);*/
+  sched.addTask(detectPresenceTask);
+
+  
+  /*
+    L1 che simula la luce
+  */
+  Task* illuminateTask = new IlluminateTask(L1_PIN, Global);
+  illuminateTask->init(20);
+  sched.addTask(illuminateTask);
 
 }
 
