@@ -1,23 +1,27 @@
 #include "AlarmTask.h"
 #include "Arduino.h"
 #include "math.h"
+#include "config.h"
 
-AlarmTask::AlarmTask(float differenceThreshold){
+AlarmTask::AlarmTask(float differenceThreshold, GlobalState *Global){
 	this->differenceThreshold = differenceThreshold;
+  this->Global = Global;
 }
 
 void AlarmTask::init(int period){
 	Task::init(period);
 	this->firstAlarm = true;
+  Global = new GlobalState();
+  Global->init(period);
 }
 
 void AlarmTask::tick(){
-	if (!Global.getAlarm()){
+	if (!Global->getAlarm()){
 		checkMovement();
 		checkAlarmInput();
 	} else {
 		if (this->firstAlarm){
-			Global.writeBuffer(this->alarmMsg); //TODO
+			//Global->writeBuffer(this->alarmMsg); //TODO
 			this->firstAlarm = false;
 		}
 		checkAlarmStop();
@@ -35,20 +39,20 @@ void AlarmTask::checkMovement(){
 	} else {
 		currentTime = millis();
 		if ((currentTime-initialTime)>TMAX){
-			//Global.setAlarm(true);
+			Global->setAlarm(true);
 		}
 	}
 }
 
 void AlarmTask::checkAlarmInput(){
-	if (Global.getAlarmInput()){
-		Global.setAlarm(true);
+	if (Global->getAlarmInput()){
+		Global->setAlarm(true);
 	}
 }
 
 void AlarmTask::checkAlarmStop(){
-	if (Global.getAlarmStop()){
-		Global.setAlarm(false);
+	if (Global->getAlarmStop()){
+		Global->setAlarm(false);
 		this->firstAlarm = true;
 	}
 }

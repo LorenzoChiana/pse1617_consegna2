@@ -11,13 +11,23 @@
 #include "Scheduler.h"
 
 Scheduler sched;
+GlobalState *Global;
 
 void setup() {
-  float f = 0.1;
+  Global = new GlobalState();
   sched.init(20);
-  Task* alarmTask = new AlarmTask(f);
+  
+  Task* alarmTask = new AlarmTask(0.3, Global);
   alarmTask->init(20);
   sched.addTask(alarmTask);
+
+  Task* cleaningTask = new CleaningTask(Global);
+  cleaningTask->init(20);
+  sched.addTask(cleaningTask);
+
+  Task* detectMotion = new DetectMotion(Global);
+  detectMotion->init(20);
+  sched.addTask(detectMotion);
 
 }
 

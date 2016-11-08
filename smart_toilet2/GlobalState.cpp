@@ -1,10 +1,11 @@
 #include "GlobalState.h"
 #include "Arduino.h"
 
-GlobalState::GlobalState(int pin){
+GlobalState::GlobalState(){
 }
 
 void GlobalState::init(int period){
+  this->period = period;
 }
 
 void GlobalState::setMotion(bool value){
@@ -21,6 +22,10 @@ bool GlobalState::getPresence(){
 
 float GlobalState::getDistance(){
 	return this->distance;
+}
+
+void GlobalState::setDistance(float distance){
+	this->distance = distance;
 }
 
 void GlobalState::setAlarm(bool value){
@@ -64,10 +69,6 @@ bool GlobalState::getFlush(){
 
 int GlobalState::getUsers(){
 	return this->nUsers;
-}
-
-int GlobalState::setUsers(int nUsers){
-	this->nUsers = nUsers;
 }
 
 void GlobalState::incUsers(){

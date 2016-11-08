@@ -3,10 +3,11 @@
 
 #include "Task.h"
 #include "LedExt.h"
+#include "GlobalState.h"
 
 class FadeTask: public Task {
 	int pin, intensity, brightness, fadeAmount;
-	Led* led;
+	LedExt* led;
 
 	//counting 5 seconds
 	long currentTime, initialTime;
@@ -14,9 +15,11 @@ class FadeTask: public Task {
 	long prevTime;
 
 	bool currentState, prevState, fade;
+
+	GlobalState* Global;
 public:
 
-	FadeTask(int pin, int intensity);  
+	FadeTask(int pin, int intensitym, GlobalState* Global);  
 	void init(int period);  
 	void tick();
 };

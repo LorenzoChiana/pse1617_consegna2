@@ -1,8 +1,9 @@
 #include "LedCleaningTask.h"
 #include "Arduino.h"
 
-LedCleaningTask::LedCleaningTask(int pin){
+LedCleaningTask::LedCleaningTask(int pin, GlobalState* Global){
 	this->pin = pin;
+  this->Global = Global;
 }
 
 void LedCleaningTask::init(int period){
@@ -12,7 +13,7 @@ void LedCleaningTask::init(int period){
 
 void LedCleaningTask::tick(){
 
-	if(Global.isCleaning()){
+	if(Global->isCleaning()){
 		led->switchOn();
 	} else {
 		led->switchOff();
