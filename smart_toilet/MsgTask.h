@@ -8,6 +8,7 @@
 class MsgTask: public Task {	
 	char* getUsers();
 	char* getState();
+	void flushBuffer();
 	GlobalState *Global;
 public:
 	MsgTask(/*float differenceThreshold,*/ GlobalState *Global);  

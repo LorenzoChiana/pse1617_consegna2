@@ -7,7 +7,7 @@
 
 class AlarmLedTask: public Task {
   int pin;
-  Led* pir;
+  Led* led;
   GlobalState *Global;
 
 public:

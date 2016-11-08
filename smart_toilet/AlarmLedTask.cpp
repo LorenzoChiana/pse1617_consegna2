@@ -1,14 +1,15 @@
 #include "DetectMotionTask.h"
 #include "Arduino.h"
+#include "AlarmLedTask.h"
 
 AlarmLedTask::AlarmLedTask(int pin, GlobalState *Global){
   this->pin = pin;  
   this->Global = Global;
 }
   
-void DetectMotionTask::init(int period){
+void AlarmLedTask::init(int period){
   Task::init(period);
-  led = new Led(pin);    
+  led = new Led(this->pin);    
 }
   
 void AlarmLedTask::tick(){
