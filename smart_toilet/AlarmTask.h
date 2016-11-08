@@ -19,7 +19,7 @@ class AlarmTask: public Task {
 	void checkAlarmInput();
 	void checkAlarmStop();
 public:
-	AlarmTask(float, GlobalState *);  
+	AlarmTask(float, GlobalState*);  
 	void init(int);  
 	void tick();
 

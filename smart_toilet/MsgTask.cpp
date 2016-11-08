@@ -42,3 +42,12 @@ char* MsgTask::getState(){
 
 
 }	
+
+void MsgTask::flushBuffer(){
+	
+	char* output = Global->getWritingBuffer();
+	MsgService.sendMsg(output);
+
+	Global->setWritingBuffer("");
+}
+

@@ -19,7 +19,6 @@ class GlobalState {
   char writingBuffer[];
   bool bufferAvalible;
 public:
-
   GlobalState();  
   void init(int period);
   

@@ -5,14 +5,14 @@
 
 AlarmTask::AlarmTask(float differenceThreshold, GlobalState *Global){
 	this->differenceThreshold = differenceThreshold;
-  this->Global = Global;
+	this->Global = Global;
 }
 
 void AlarmTask::init(int period){
 	Task::init(period);
 	this->firstAlarm = true;
-  Global = new GlobalState();
-  Global->init(period);
+	Global = new GlobalState();
+	Global->init(period);
 }
 
 void AlarmTask::tick(){
