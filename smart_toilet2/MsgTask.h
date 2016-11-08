@@ -2,6 +2,7 @@
 #define __MSGTASK__
 
 #include "Task.h"
+#include "MsgService.h"
 #include "GlobalState.h"
 
 class MsgTask: public Task {	

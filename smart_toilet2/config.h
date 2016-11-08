@@ -20,8 +20,8 @@
 
 #define TMAX 20000
 
-char COMMAND_USERS[ ] = "user";
-char COMMAND_STATE[ ] = "state";
+#define COMMAND_USERS "user"
+#define COMMAND_STATE "state"
 
 #endif
 

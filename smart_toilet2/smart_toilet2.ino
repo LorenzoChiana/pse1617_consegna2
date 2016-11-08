@@ -25,7 +25,7 @@ void setup() {
   cleaningTask->init(20);
   sched.addTask(cleaningTask);
 
-  Task* detectMotion = new DetectMotion(Global);
+  Task* detectMotion = new DetectMotionTask(PIR_PIN,Global);
   detectMotion->init(20);
   sched.addTask(detectMotion);
 
