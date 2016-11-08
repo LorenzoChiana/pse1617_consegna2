@@ -1,13 +1,16 @@
 #ifndef __MSGTASK__
 #define __MSGTASK__
 
-#include "../Task.h"
+#include "Task.h"
+#include "MsgService.h"
+#include "GlobalState.h"
 
 class MsgTask: public Task {	
 	char* getUsers();
 	char* getState();
+	GlobalState *Global;
 public:
-	MsgTask(float differenceThreshold);  
+	MsgTask(/*float differenceThreshold,*/ GlobalState *Global);  
 	void init(int period);  
 	void tick();
 };

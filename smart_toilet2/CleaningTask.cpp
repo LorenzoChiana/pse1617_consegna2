@@ -51,7 +51,7 @@ void CleaningTask::tick(){
 		executeCleaning = true;
 	}
 
-	//CONTROLLO NUMERI UTENTI ENTRATI NEL WC
+	//CONTROLLO NUMERI UTENTI ENTRATI NELLA TOILET
 
 	//utente entra
 	if(Global->getPresence()) {

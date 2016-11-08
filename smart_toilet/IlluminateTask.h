@@ -1,8 +1,9 @@
 #ifndef __ILLUMINATETASK__
 #define __ILLUMINATETASK__
 
-#include "../Task.h"
-#include "../components/Led.h"
+#include "Task.h"
+#include "Led.h"
+#include "GlobalState.h"
 
 class IlluminateTask: public Task {
 	int pin;
@@ -11,8 +12,10 @@ class IlluminateTask: public Task {
 	long currentTime, initialTime;
 	bool currentState, prevState;
 
+	GlobalState *Global;
+
 public:
-	IlluminateTask(int pin);  
+	IlluminateTask(int pin, GlobalState* Global);  
 	void init(int period);  
 	void tick();
 };

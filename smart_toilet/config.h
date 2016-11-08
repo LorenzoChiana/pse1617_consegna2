@@ -18,10 +18,23 @@
 #define DMIN_WC 0.5
 #define DMAX_WC 1
 
+#define INTENSITY 5
+
 #define TMAX 20000
 
-char COMMAND_USERS[ ] = "user";
-char COMMAND_STATE[ ] = "state";
+#define COMMAND_USERS "user"
+#define COMMAND_STATE "state"
+
+#include "AlarmTask.h"
+#include "GlobalState.h"
+#include "CleaningTask.h"
+#include "DetectMotionTask.h"
+#include "DetectPresenceTask.h"
+#include "FadeTask.h"
+#include "IlluminateTask.h"
+#include "LedCleaningTask.h"
+#include "MsgTask.h"
+#include "Scheduler.h"
 
 #endif
 

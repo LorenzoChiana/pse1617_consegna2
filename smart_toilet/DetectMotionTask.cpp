@@ -1,8 +1,9 @@
 #include "DetectMotionTask.h"
 #include "Arduino.h"
 
-DetectMotionTask::DetectMotionTask(int pin){
+DetectMotionTask::DetectMotionTask(int pin, GlobalState *Global){
   this->pin = pin;  
+  this->Global = Global;
 }
   
 void DetectMotionTask::init(int period){
@@ -12,8 +13,8 @@ void DetectMotionTask::init(int period){
   
 void DetectMotionTask::tick(){
   if (pir->detected()) {
-    Global.setMotion(true);
+    Global->setMotion(true);
   } else {
-    Global.setMotion(false);
+    Global->setMotion(false);
   }
 }

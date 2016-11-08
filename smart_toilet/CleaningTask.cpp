@@ -1,22 +1,25 @@
-#include "ClaeaningTask.h"
+
+#include "CleaningTask.h"
 #include "Arduino.h"
 
-ClaeaningTask::ClaeaningTask(){
+CleaningTask::CleaningTask(GlobalState *Global){
+  this->Global = Global;
 }
 
-void ClaeaningTask::init(int period){
+void CleaningTask::init(int period){
 	Task::init(period);
 	
 	currentTime = initialTime = 0;
 	//currentState = prevState = 0;
 	executeCleaning = false;
 	firstTime = true;
+  userEntered = false;
 
 }
 
-void ClaeaningTask::tick(){
-	if (Global.getUsers()%10==0 && executeCleaning){
-		if (Global.getPresence()) {
+void CleaningTask::tick(){
+	if (Global->getUsers()%10==0 && executeCleaning){
+		if (Global->getPresence()) {
 			noInterrupts();
 			/*
 				MANDARE MESSAGGIO!!!
@@ -30,36 +33,36 @@ void ClaeaningTask::tick(){
 		if (firstTime){
 			currentTime = initialTime = millis();
 			noInterrupts();
-			Global.setCleaning(true);
-  			interrupts();
+			Global->setCleaning(true);
+  		interrupts();
 		}
 		
 		currentTime = millis();
 		//dopo 10 sec lo stato "cleaning" diventa falso
 		if (currentTime - initialTime >= 10000){
 			noInterrupts();
-			Global.setCleaning(false);
-  			interrupts();
+			Global->setCleaning(false);
+  		interrupts();
 		}
 
 		firstTime = false;
-	} else if (Global.getUsers()%10!=0) {
+	} else if (Global->getUsers()%10!=0) {
 		firstTime = true;
 		executeCleaning = true;
 	}
 
-	//CONTROLLO NUMERI UTENTI ENTRATI NEL WC
+	//CONTROLLO NUMERI UTENTI ENTRATI NELLA TOILET
 
 	//utente entra
-	if(Global.getPresence) {
+	if(Global->getPresence()) {
 		userEntered = true;
 	}
 
 	//utente esce
-	if(!Global.getPresence && userEntered) {
+	if(!Global->getPresence() && userEntered) {
 		noInterrupts();
-		Global.setUsers(Global.getUsers() + 1);
+  	Global->incUsers();
 		userEntered = false;
-  		interrupts();
+  	interrupts();
 	}
 }

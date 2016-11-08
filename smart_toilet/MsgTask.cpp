@@ -1,7 +1,9 @@
 #include "MsgTask.h"
 #include "Arduino.h"
+#include "config.h"
 
-MsgTask::MsgTask(){
+MsgTask::MsgTask(/*float differenceThreshold,*/ GlobalState* Global){
+  this->Global = Global;
 }
 
 void MsgTask::init(int period){
@@ -10,7 +12,7 @@ void MsgTask::init(int period){
 }
 
 void MsgTask::tick(){	
-	if (MsgService.isMsgAvailable()) {
+  	if (MsgService.isMsgAvailable()) {
 		Msg* msg = MsgService.receiveMsg();    
 		if (msg->getContent() == COMMAND_USERS){
 			MsgService.sendMsg(getUsers());
@@ -23,16 +25,16 @@ void MsgTask::tick(){
 }
 
 char* MsgTask::getUsers(){
-	char response[];
-	sprintf(response,"%d",Global.getUsers());
+	char response[10];
+	sprintf(response,"%d",Global->getUsers());
 
 	return response;
 }
 
 char* MsgTask::getState(){
-	if (Global.getPresence()){
+	if (Global->getPresence()){
 		return "Occupato";
-	} else if (Global.getAlarm()){
+	} else if (Global->getAlarm()){
 		return "Allarme";
 	} else {
 		return "Libero";

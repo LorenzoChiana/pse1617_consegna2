@@ -1,14 +1,15 @@
 #include "FadeTask.h"
 #include "Arduino.h"
 
-FadeTask::FadeTask(int pin, int intensity){
+FadeTask::FadeTask(int pin, int intensity, GlobalState* Global){
 	this->pin = pin;
 	this->intensity = intensity;
+  this->Global = Global;
 }
 
 void FadeTask::init(int period){
 	Task::init(period);
-	led = new Led(this->pin, this->intensity);    
+	led = new LedExt(this->pin, this->intensity);    
 
 	currentTime = initialTime = 0;
 	currentState = prevState = false;
@@ -25,7 +26,7 @@ void FadeTask::tick(){
 		currentTime = initialTime = prevTime = millis();
 	}
 
-	if (Global.getFlush()){
+	if (Global->getFlush()){
 		led->switchOn();
 
 		prevState = currentState;
@@ -54,7 +55,7 @@ void FadeTask::tick(){
 		// dopo 5 secondi smette lo sciacquone
 		if (currentTime - initialTime > 5000){
 			led->switchOff();	
-			Global.setFlush(false);	
+			Global->setFlush(false);	
 			prevState = currentState;
 			currentState = false;	
 		}

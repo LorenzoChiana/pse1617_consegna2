@@ -1,8 +1,9 @@
 #include "IlluminateTask.h"
 #include "Arduino.h"
 
-IlluminateTask::IlluminateTask(int pin){
+IlluminateTask::IlluminateTask(int pin, GlobalState* Global){
 	this->pin = pin;
+	this->Global = Global;
 }
 
 void IlluminateTask::init(int period){
@@ -19,7 +20,7 @@ void IlluminateTask::tick(){
 	if (isTurendOff){
 		currentTime = initialTime = millis();
 	}
-	if (Global.getPresence()){
+	if (Global->getPresence()){
 		led->switchOn();
 
 		prevState = currentState;
