@@ -6,8 +6,8 @@
 #ifndef __CONFIG__
 #define __CONFIG__
 
-#define T1_PIN 2
-#define T2_PIN 3
+#define T1_PIN 10
+#define T2_PIN 11
 #define L1_PIN 4
 #define L2_PIN 5
 #define L3_PIN 6
@@ -35,6 +35,9 @@
 #include "LedCleaningTask.h"
 #include "MsgTask.h"
 #include "Scheduler.h"
+#include "InputAlarmTask.h"
+#include "StopAlarmTask.h"
+#include "AlarmLedTask.h"
 
 #endif
 

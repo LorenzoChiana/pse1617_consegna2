@@ -11,10 +11,7 @@ void setup() {
   /*
     task che controlla se l'utente viene rilevato e resta per troppo tempo immobile
   */
-  /*Task* alarmTask = new AlarmTask(0.3, Global);
-  alarmTask->init(20);
-  sched.addTask(alarmTask);*/
-
+  
   /*
     Auto pulizia del bagno
   */
@@ -25,10 +22,11 @@ void setup() {
   /*
     PIR per la rilevazione della preenza della persona
   */
+  /*
   Task* detectMotion = new DetectMotionTask(PIR_PIN,Global);
   detectMotion->init(20);
   sched.addTask(detectMotion);
-
+*/
   /*
     L3 che segnala che sta avvenendo la pulizia nel bagno
   */
@@ -47,6 +45,7 @@ void setup() {
   /*
     sencore ad ultra suoni che rileva la vicinanza al water dell'utente
   */
+  /*
   Task* detectPresenceTask = new DetectPresenceTask(ECHO_PIN, TRIG_PIN,Global);
   detectPresenceTask->init(20);
   sched.addTask(detectPresenceTask);
@@ -55,6 +54,7 @@ void setup() {
   /*
     L1 che simula la luce
   */
+  /*
   Task* illuminateTask = new IlluminateTask(L1_PIN, Global);
   illuminateTask->init(20);
   sched.addTask(illuminateTask);
@@ -62,6 +62,23 @@ void setup() {
   Task* fadeTask = new FadeTask(L2_PIN,255,Global);
   fadeTask->init(10);
   sched.addTask(fadeTask);
+*/
+  
+  Task* alarmTask = new AlarmTask(0.3, Global);
+  alarmTask->init(20);
+  sched.addTask(alarmTask);  
+
+  Task* inputAlarmTask = new InputAlarmTask(T1_PIN,Global);
+  inputAlarmTask->init(20);
+  sched.addTask(inputAlarmTask);
+
+  Task* stopAlarmTask = new StopAlarmTask(T2_PIN,Global);
+  stopAlarmTask->init(20);
+  sched.addTask(stopAlarmTask);
+
+  Task* alarmLedTask = new AlarmLedTask(L3_PIN,Global);
+  alarmLedTask->init(20);
+  sched.addTask(alarmLedTask);
 
 }
 

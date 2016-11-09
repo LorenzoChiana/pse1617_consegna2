@@ -5,8 +5,16 @@
 GlobalState::GlobalState(){
 }
 
-void GlobalState::init(int period){
-  this->period = period;
+void GlobalState::init(){
+  
+
+  this->setFlush(false);
+  this->setAlarmInput(false);
+  this->setAlarmStop(false);
+  this->setAlarm(false);
+  this->setAlarmInput(false);
+  this->setWritingBuffer(" ");
+  this->resetUsers();
 }
 
 void GlobalState::setMotion(bool value){

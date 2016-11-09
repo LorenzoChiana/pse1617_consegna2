@@ -13,11 +13,11 @@ void InputAlarmTask::init(int period){
 }
   
 void InputAlarmTask::tick(){
-	
   if (button->isPressed()) {
     currentTime = millis();
     if (currentTime-initialTime>2000){
     	Global->setAlarmInput(true);
+
     }
   } else {
     initialTime = millis();

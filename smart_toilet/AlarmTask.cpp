@@ -11,17 +11,19 @@ AlarmTask::AlarmTask(float differenceThreshold, GlobalState *Global){
 void AlarmTask::init(int period){
 	Task::init(period);
 	this->firstAlarm = true;
-	Global = new GlobalState();
-	Global->init(period);
+	
 }
 
 void AlarmTask::tick(){
+	Serial.println(Global->getAlarm());
+
 	if (!Global->getAlarm()){
 		checkMovement();
 		checkAlarmInput();
 	} else {
 		if (this->firstAlarm){
 			Global->setWritingBuffer("Allarmee!");
+			Serial.println("Primo Allarme");			
 			this->firstAlarm = false;
 		}
 		checkAlarmStop();
@@ -29,6 +31,8 @@ void AlarmTask::tick(){
 }
 
 void AlarmTask::checkMovement(){
+	prevDistance = currentDistance;
+	currentDistance = Global->getDistance();
 	bool isChanged = (fabs(currentDistance - prevDistance) > differenceThreshold);
 	if (isChanged) {
 		this->errorCounter++;
@@ -46,12 +50,14 @@ void AlarmTask::checkMovement(){
 
 void AlarmTask::checkAlarmInput(){
 	if (Global->getAlarmInput()){
+		Serial.println("ALARM");
 		Global->setAlarm(true);
 	}
 }
 
 void AlarmTask::checkAlarmStop(){
 	if (Global->getAlarmStop()){
+		Serial.println("Stop");
 		Global->setAlarm(false);
 		this->firstAlarm = true;
 	}

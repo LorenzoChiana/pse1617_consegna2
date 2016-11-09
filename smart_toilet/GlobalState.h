@@ -20,7 +20,7 @@ class GlobalState {
   bool bufferAvalible;
 public:
   GlobalState();  
-  void init(int period);
+  void init();
   
   void setMotion(bool value);
   void setProssimity(bool value);

@@ -20,31 +20,22 @@ void FadeTask::init(int period){
 }
 
 void FadeTask::tick(){
-
 	if (Global->getFlush()){
 		led->switchOn();
-
 		currentTime = millis();
-		// 4 pulsazioni al secondo
-		
-			//fading
-			
+		// 4 pulsazioni al secondo		
+			//fading			
 	  		brightness = brightness + fadeAmount;
-
 	  		if (brightness<0){
 	  			brightness = 0;
 	  		}
 	  		if (brightness>255){
 	  			brightness=255;
-
-	    		Serial.println(i++); 
 	  		}
-
 	  		if (brightness <= 0 || brightness >= 255) {
 	    		fadeAmount = -fadeAmount ;
 	  		} 
 	  		led->setIntensity(brightness);
-
 		// dopo 5 secondi smette lo sciacquone
 		if (currentTime - initialTime > 5000){
 			led->switchOff();	

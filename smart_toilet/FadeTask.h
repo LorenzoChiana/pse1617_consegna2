@@ -15,7 +15,6 @@ class FadeTask: public Task {
 	long prevTime;
 
 	bool currentState, prevState, fade;
-	int i=0;
 	GlobalState* Global;
 public:
 
