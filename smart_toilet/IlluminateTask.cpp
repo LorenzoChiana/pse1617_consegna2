@@ -17,9 +17,9 @@ void IlluminateTask::init(int period){
 void IlluminateTask::tick(){
 	
 	bool isTurendOff = (currentState == false && prevState == true);
-	if (isTurendOff){
+	/*if (isTurendOff){
 		currentTime = initialTime = millis();
-	}
+	}*/
 	if (Global->getPresence()){
 		led->switchOn();
 

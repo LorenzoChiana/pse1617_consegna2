@@ -6,7 +6,7 @@ GlobalState *Global;
 void setup() {
   Serial.begin(9600);
   Global = new GlobalState();
-  sched.init(20);
+  sched.init(10);
 
   /*
     task che controlla se l'utente viene rilevato e resta per troppo tempo immobile
@@ -58,6 +58,10 @@ void setup() {
   Task* illuminateTask = new IlluminateTask(L1_PIN, Global);
   illuminateTask->init(20);
   sched.addTask(illuminateTask);
+
+  Task* fadeTask = new FadeTask(L2_PIN,255,Global);
+  fadeTask->init(10);
+  sched.addTask(fadeTask);
 
 }
 

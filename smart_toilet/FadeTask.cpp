@@ -15,49 +15,42 @@ void FadeTask::init(int period){
 	currentState = prevState = false;
 
 	brightness = 0;
- 	fadeAmount = 5;
+ 	fadeAmount = 255/(125/period);
  	fade = true;
 }
 
 void FadeTask::tick(){
-	
-	bool isTurendOff = (currentState == false && prevState == true);
-	if (isTurendOff){
-		currentTime = initialTime = prevTime = millis();
-	}
 
 	if (Global->getFlush()){
 		led->switchOn();
 
-		prevState = currentState;
-		currentState = true;
-
 		currentTime = millis();
 		// 4 pulsazioni al secondo
-		if(currentTime - prevTime < 250 && fade){
+		
 			//fading
-			led->setIntensity(brightness);
+			
 	  		brightness = brightness + fadeAmount;
 
-	  		if (brightness == 0 || brightness == 255) {
-	    		fadeAmount = -fadeAmount ; 
-	  		} 
-	  		//per garantire che si accenda e si spenga solo una volta ogni 0,25 secondi
-	  		if(brightness == 0) {
-	  			fade = false;
+	  		if (brightness<0){
+	  			brightness = 0;
 	  		}
-		} else {
-			prevTime = millis();
-			brightness = 0;
-			fade = true;
-	  	}
+	  		if (brightness>255){
+	  			brightness=255;
+
+	    		Serial.println(i++); 
+	  		}
+
+	  		if (brightness <= 0 || brightness >= 255) {
+	    		fadeAmount = -fadeAmount ;
+	  		} 
+	  		led->setIntensity(brightness);
 
 		// dopo 5 secondi smette lo sciacquone
 		if (currentTime - initialTime > 5000){
 			led->switchOff();	
 			Global->setFlush(false);	
-			prevState = currentState;
-			currentState = false;	
 		}
+	} else {
+		currentTime = initialTime = millis();
 	}
 }

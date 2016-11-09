@@ -15,8 +15,8 @@
 #define TRIG_PIN 8
 #define PIR_PIN 9
 
-#define DMIN_WC 0.5
-#define DMAX_WC 1
+#define DMIN_WC 0.1
+#define DMAX_WC 0.5
 
 #define INTENSITY 5
 

@@ -15,11 +15,11 @@ class FadeTask: public Task {
 	long prevTime;
 
 	bool currentState, prevState, fade;
-
+	int i=0;
 	GlobalState* Global;
 public:
 
-	FadeTask(int pin, int intensitym, GlobalState* Global);  
+	FadeTask(int pin, int intensity, GlobalState* Global);  
 	void init(int period);  
 	void tick();
 };
