@@ -17,6 +17,7 @@ void DetectPresenceTask::init(int period){
 void DetectPresenceTask::tick(){
 	//Set the distance in global
 	float distance = proximitySensor->getDistance();
+	Global->setDistance(distance);
 //	Global->setDistance(distance);
 	//If he is near and leaves the DMAX_WC distance
 	if (this->isNear){

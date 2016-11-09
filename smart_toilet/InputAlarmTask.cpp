@@ -17,7 +17,6 @@ void InputAlarmTask::tick(){
     currentTime = millis();
     if (currentTime-initialTime>2000){
     	Global->setAlarmInput(true);
-
     }
   } else {
     initialTime = millis();

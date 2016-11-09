@@ -11,10 +11,10 @@ class AlarmTask: public Task {
 	int errorCounter;
 
 	bool firstAlarm;
-	char alarmMsg[];
 
 	GlobalState *Global;
-
+	int counterThreshold;
+	int checkCounter = 0;
 	void checkMovement();
 	void checkAlarmInput();
 	void checkAlarmStop();

@@ -11,19 +11,17 @@ AlarmTask::AlarmTask(float differenceThreshold, GlobalState *Global){
 void AlarmTask::init(int period){
 	Task::init(period);
 	this->firstAlarm = true;
-	
+	this->counterThreshold = 200/period;	
 }
 
 void AlarmTask::tick(){
-	Serial.println(Global->getAlarm());
-
-	if (!Global->getAlarm()){
+	if (!Global->getAlarm() && firstAlarm){
 		checkMovement();
 		checkAlarmInput();
 	} else {
 		if (this->firstAlarm){
-			Global->setWritingBuffer("Allarmee!");
-			Serial.println("Primo Allarme");			
+			Global->setWritingBuffer("Allarme!");	
+			Serial.println(Global->getWritingBuffer());		
 			this->firstAlarm = false;
 		}
 		checkAlarmStop();
@@ -31,33 +29,37 @@ void AlarmTask::tick(){
 }
 
 void AlarmTask::checkMovement(){
-	prevDistance = currentDistance;
-	currentDistance = Global->getDistance();
-	bool isChanged = (fabs(currentDistance - prevDistance) > differenceThreshold);
-	if (isChanged) {
-		this->errorCounter++;
-		if (this->errorCounter>2){
-			initialTime = millis();
-			errorCounter = 0;
-		}		
-	} else {
-		currentTime = millis();
-		if ((currentTime-initialTime)>TMAX){
-			Global->setAlarm(true);
+	if (checkCounter == counterThreshold) {
+		prevDistance = currentDistance;	
+		currentDistance = Global->getDistance();
+		bool isChanged = (fabs(currentDistance - prevDistance) > differenceThreshold);
+		Serial.println(fabs(currentDistance - prevDistance));
+		if (isChanged) {
+				this->errorCounter++;
+				if (this->errorCounter>2){
+					initialTime = millis();
+					errorCounter = 0;
+				}		
+		} else {
+			currentTime = millis();
+			if ((currentTime-initialTime)>TMAX){
+				Global->setAlarm(true);
+			}
 		}
+		checkCounter = 0;
+	} else {
+		checkCounter++;	
 	}
 }
 
 void AlarmTask::checkAlarmInput(){
 	if (Global->getAlarmInput()){
-		Serial.println("ALARM");
 		Global->setAlarm(true);
 	}
 }
 
 void AlarmTask::checkAlarmStop(){
 	if (Global->getAlarmStop()){
-		Serial.println("Stop");
 		Global->setAlarm(false);
 		this->firstAlarm = true;
 	}

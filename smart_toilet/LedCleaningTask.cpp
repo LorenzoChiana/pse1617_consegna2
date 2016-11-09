@@ -3,7 +3,7 @@
 
 LedCleaningTask::LedCleaningTask(int pin, GlobalState* Global){
 	this->pin = pin;
-  this->Global = Global;
+	this->Global = Global;
 }
 
 void LedCleaningTask::init(int period){
