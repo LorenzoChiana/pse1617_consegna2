@@ -8,8 +8,8 @@ class CleaningTask: public Task {
 
 	long currentTime, initialTime;
 	bool executeCleaning, firstTime, userEntered;
-
-  GlobalState *Global;
+	const char* message;
+	GlobalState *Global;
 public:
 	CleaningTask(GlobalState *Global);  
 	void init(int period);  

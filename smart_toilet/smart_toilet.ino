@@ -79,7 +79,7 @@ void setup() {
 
   Task* msgTask = new MsgTask(Global);
   msgTask->init(20);
-  //sched.addTask(msgTask);
+  sched.addTask(msgTask);
 
 }
 

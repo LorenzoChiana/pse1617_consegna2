@@ -10,10 +10,10 @@ void CleaningTask::init(int period){
 	Task::init(period);
 	
 	currentTime = initialTime = 0;
-	//currentState = prevState = 0;
-	executeCleaning = false;
-	firstTime = true;
-	userEntered = false;
+	this->message = "Si prega di uscire, toilette in fase di auto-pulizia";
+	this->executeCleaning = false;
+	this->firstTime = true;
+	this->userEntered = false;
 
 }
 
@@ -21,7 +21,7 @@ void CleaningTask::tick(){
 	//Serial.println(Global->getUsers());
 	if (Global->getUsers()%10==0 && executeCleaning){
 		if (Global->getPresence()) {
-			Global->setWritingBuffer("Si prega di uscire, toilette in fase di auto-pulizia");
+			Global->setWritingBuffer(this->message);
 		}
 		// se è il primo ciclo prendo il tempo iniziale e setto lo stato in "cleaning"
 		if (firstTime){

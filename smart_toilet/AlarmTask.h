@@ -10,7 +10,7 @@ class AlarmTask: public Task {
 	long currentTime, initialTime;
 	bool reset, isChanged;
 	bool firstAlarm;
-
+	const char* message;
 	GlobalState *Global;
 	int counterThreshold;
 	int checkCounter = 0;

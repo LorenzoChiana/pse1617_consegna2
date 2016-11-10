@@ -9,6 +9,7 @@ class MsgTask: public Task {
 	char* getUsers();
 	char* getState();
 	void flushBuffer();
+	char* emptyString;
 	GlobalState *Global;
 public:
 	MsgTask(GlobalState *Global);  

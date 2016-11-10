@@ -3,21 +3,26 @@
 #include "config.h"
 
 MsgTask::MsgTask(/*float differenceThreshold,*/ GlobalState* Global){
-  this->Global = Global;
+this->Global = Global;
 }
 
 void MsgTask::init(int period){
-	Task::init(period);	
+	Task::init(period);
+	emptyString = "\0";	
 	MsgService.init();
 }
 
 void MsgTask::tick(){	
-  	if (MsgService.isMsgAvailable()) {
-		Msg* msg = MsgService.receiveMsg();    
+	if (MsgService.isMsgAvailable()) {
+		Serial.print("RICEVUTO: ");
+		Msg* msg = MsgService.receiveMsg();  
+		Serial.println(msg->getContent()) ; 
 		if (msg->getContent() == COMMAND_USERS){
+			Serial.println("Mandato");
 			MsgService.sendMsg(getUsers());
 		}
 		if (msg->getContent() == COMMAND_STATE){
+			Serial.println(getState());
 			MsgService.sendMsg(getState());
 		}
 		delete msg;
@@ -29,31 +34,30 @@ void MsgTask::tick(){
 char* MsgTask::getUsers(){
 	char response[10];
 	sprintf(response,"%d",Global->getUsers());
-
 	return response;
 }
 
 char* MsgTask::getState(){
-  char state[10];
+	char state[10];
 	if (Global->getPresence()){
-    strcpy(state,"Occupato");	
+		strcpy(state,"Occupato");	
 	} else if (Global->getAlarm()){
 		strcpy(state,"Allarme");  
 	} else {
-    strcpy(state,"Libero"); 
+		strcpy(state,"Libero"); 
 	}
 
- return state;
+	return state;
 
 
 }	
 
 void MsgTask::flushBuffer(){
-	char* emptyString = "";
+
 	char* output = Global->getWritingBuffer();
-	if (strcmp(Global->getWritingBuffer(),emptyString)!=0){
+	if (strlen(output)>0){
 		MsgService.sendMsg(output);		
-		Global->setWritingBuffer(" ");
+		Global->setWritingBuffer("\0");
 	}
 }
 

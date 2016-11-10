@@ -3,7 +3,7 @@
 #include "math.h"
 #include "config.h"
 
-AlarmTask::AlarmTask(float differenceThreshold, GlobalState * Global) {
+AlarmTask::AlarmTask(float differenceThreshold, GlobalState* Global) {
   this->differenceThreshold = differenceThreshold;
   this->Global = Global;
 }
@@ -13,6 +13,7 @@ void AlarmTask::init(int period) {
   this->firstAlarm = true;
   this->counterThreshold = 100 / period;
   this->reset = true;
+  this->message = "WARNING: Alarm!";
 }
 
 void AlarmTask::tick() {
@@ -22,7 +23,7 @@ void AlarmTask::tick() {
   } else {
     if (this->firstAlarm) {
       this->firstAlarm = false;
-      Global->setWritingBuffer("Allarme!");
+      Global->setWritingBuffer(this->message);
     }
     checkAlarmStop();
 
@@ -34,7 +35,6 @@ void AlarmTask::checkMovement() {
     prevDistance = currentDistance;
     currentDistance = Global->getDistance();
     float difference = fabs(currentDistance - prevDistance);
-    Serial.println(difference);
     bool isChanged = (difference > differenceThreshold && difference < 5);
     if (isChanged || !Global->getPresence() || reset) {
       initialTime = millis();

@@ -14,7 +14,7 @@ void GlobalState::init(){
   this->setAlarm(false);
   this->setAlarmInput(false);
   this->setCleaning(false);
-  this->setWritingBuffer(" ");
+  this->setWritingBuffer("");
   this->resetUsers();
 }
 
@@ -90,7 +90,16 @@ void GlobalState::resetUsers(){
 }
 
 void GlobalState::setWritingBuffer(char* s){
-	strcpy(this->writingBuffer,s);
+	if (strlen(s)==0){
+		strcpy(this->writingBuffer,s);
+	} else {
+		if (strlen(this->writingBuffer)>0){
+			strcat(this->writingBuffer,"\n");
+			strcat(this->writingBuffer,s);
+		} else {
+			strcpy(this->writingBuffer,s);
+		}
+	}
 }
 
 char* GlobalState::getWritingBuffer(){
