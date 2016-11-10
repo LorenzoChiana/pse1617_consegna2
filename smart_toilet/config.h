@@ -20,7 +20,7 @@
 
 #define INTENSITY 5
 
-#define TMAX 20000
+#define TMAX 5000
 
 #define COMMAND_USERS "user"
 #define COMMAND_STATE "state"
