@@ -20,7 +20,7 @@ void FadeTask::init(int period){
 }
 
 void FadeTask::tick(){
-	if (Global->getFlush()){
+	if (Global->getFlush() && !Global->isCleaning()){
 		led->switchOn();
 		currentTime = millis();
 		// 4 pulsazioni al secondo		
@@ -43,5 +43,9 @@ void FadeTask::tick(){
 		}
 	} else {
 		currentTime = initialTime = millis();
+		if (Global->isCleaning()){
+				led->switchOff();
+				Global->setFlush(false);
+		}
 	}
 }

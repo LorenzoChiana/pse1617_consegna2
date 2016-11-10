@@ -18,6 +18,7 @@ void CleaningTask::init(int period){
 }
 
 void CleaningTask::tick(){
+	//Serial.println(Global->getUsers());
 	if (Global->getUsers()%10==0 && executeCleaning){
 		if (Global->getPresence()) {
 			Global->setWritingBuffer("Si prega di uscire, toilette in fase di auto-pulizia");
@@ -31,24 +32,23 @@ void CleaningTask::tick(){
 		//dopo 10 sec lo stato "cleaning" diventa falso
 		if (currentTime - initialTime >= 10000){
 			Global->setCleaning(false);
+			executeCleaning=false;
 		}
-		Serial.println(currentTime-initialTime);
 		firstTime = false;
 	} else if (Global->getUsers()%10!=0) {
 		firstTime = true;
 		executeCleaning = true;
 	}
-
 	//CONTROLLO NUMERI UTENTI ENTRATI NELLA TOILET
-
-	//utente entra
-	if(Global->getPresence()) {
-		userEntered = true;
-	}
-
-	//utente esce
-	if(!Global->getPresence() && userEntered) {
-		Global->incUsers();
-		userEntered = false;
+	if (!Global->isCleaning()){
+		//utente entra
+		if(Global->getPresence()) {
+			userEntered = true;
+		}
+		//utente esce
+		if(!Global->getPresence() && userEntered) {
+			Global->incUsers();
+			userEntered = false;
+		}
 	}
 }

@@ -15,8 +15,14 @@ void AlarmTask::init(int period){
 }
 
 void AlarmTask::tick(){
+
+	Serial.print("Input: ");
+	Serial.print(Global->getAlarmInput());
+	Serial.print("  Stop: ");
+	Serial.println(Global->getAlarmStop());
+	//Verificare
 	if (!Global->getAlarm() && firstAlarm){
-		checkMovement();
+		//checkMovement();
 		checkAlarmInput();
 	} else {
 		if (this->firstAlarm){
@@ -25,21 +31,23 @@ void AlarmTask::tick(){
 			this->firstAlarm = false;
 		}
 		checkAlarmStop();
+
 	}	
 }
 
 void AlarmTask::checkMovement(){
+	//Da verificare
 	if (checkCounter == counterThreshold) {
 		prevDistance = currentDistance;	
 		currentDistance = Global->getDistance();
 		bool isChanged = (fabs(currentDistance - prevDistance) > differenceThreshold);
-		Serial.println(fabs(currentDistance - prevDistance));
+		//Serial.println(fabs(currentDistance - prevDistance));
 		if (isChanged) {
-				this->errorCounter++;
-				if (this->errorCounter>2){
-					initialTime = millis();
-					errorCounter = 0;
-				}		
+			this->errorCounter++;
+			if (this->errorCounter>2){
+				initialTime = millis();
+				errorCounter = 0;
+			}		
 		} else {
 			currentTime = millis();
 			if ((currentTime-initialTime)>TMAX){

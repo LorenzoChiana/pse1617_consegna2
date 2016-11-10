@@ -13,6 +13,7 @@ void StopAlarmTask::init(int period){
 }
   
 void StopAlarmTask::tick(){
+  //Serial.println(digitalRead(pin));
   if (button->isPressed()) {
     Global->setAlarmStop(true);
   } else {

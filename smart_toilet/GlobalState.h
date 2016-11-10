@@ -16,7 +16,7 @@ class GlobalState {
 
   int nUsers;
   int period;
-  char writingBuffer[20];
+  char writingBuffer[100];
   bool bufferAvalible;
 public:
   GlobalState();  

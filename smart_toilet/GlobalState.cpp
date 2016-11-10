@@ -13,6 +13,7 @@ void GlobalState::init(){
   this->setAlarmStop(false);
   this->setAlarm(false);
   this->setAlarmInput(false);
+  this->setCleaning(false);
   this->setWritingBuffer(" ");
   this->resetUsers();
 }
