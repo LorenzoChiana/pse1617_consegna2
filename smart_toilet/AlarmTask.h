@@ -8,8 +8,7 @@ class AlarmTask: public Task {
 	float differenceThreshold;
 	float currentDistance, prevDistance;
 	long currentTime, initialTime;
-	int errorCounter;
-
+	bool reset, isChanged;
 	bool firstAlarm;
 
 	GlobalState *Global;

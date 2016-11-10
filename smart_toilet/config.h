@@ -25,7 +25,7 @@
 #define COMMAND_USERS "user"
 #define COMMAND_STATE "state"
 
-#define STILL_DISTANCE_THRESHOLD 0.1
+#define STILL_DISTANCE_THRESHOLD 0.05
 
 #include "AlarmTask.h"
 #include "GlobalState.h"
