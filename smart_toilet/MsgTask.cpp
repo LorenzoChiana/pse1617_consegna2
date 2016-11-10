@@ -14,11 +14,8 @@ void MsgTask::init(int period){
 
 void MsgTask::tick(){	
 	if (MsgService.isMsgAvailable()) {
-		Serial.print("RICEVUTO: ");
 		Msg* msg = MsgService.receiveMsg();  
-		Serial.println(msg->getContent()) ; 
 		if (msg->getContent() == COMMAND_USERS){
-			Serial.println("Mandato");
 			MsgService.sendMsg(getUsers());
 		}
 		if (msg->getContent() == COMMAND_STATE){
@@ -38,7 +35,7 @@ char* MsgTask::getUsers(){
 
 char* MsgTask::getState(){
 	char state[10];
-	if (Global->getPresence()){
+	if (Global->getPresence() || Global->isCleaning()){
 		strcpy(state,"Occupato");	
 	} else if (Global->getAlarm()){
 		strcpy(state,"Allarme");  

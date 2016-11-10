@@ -15,19 +15,19 @@ void setup() {
   /*
     Auto pulizia del bagno
   */
-  /*
+  
   Task* cleaningTask = new CleaningTask(Global);
   cleaningTask->init(20);
   sched.addTask(cleaningTask);
-  */
+  
   /*
     L3 che segnala che sta avvenendo la pulizia nel bagno
   */
-  /*
+  
   Task* ledCleaningTask = new LedCleaningTask(L3_PIN, Global);
   ledCleaningTask->init(20);
   sched.addTask(ledCleaningTask);
-  */
+  
   /*
     PIR per la rilevazione della preenza della persona
   */

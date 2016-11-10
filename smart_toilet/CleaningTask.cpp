@@ -13,6 +13,7 @@ void CleaningTask::init(int period){
 	this->message = "Si prega di uscire, toilette in fase di auto-pulizia";
 	this->executeCleaning = false;
 	this->firstTime = true;
+	this->firstWarning = true;
 	this->userEntered = false;
 
 }
@@ -25,8 +26,12 @@ void CleaningTask::tick(){
 		appena l'allarme viene stoppato si esegue -> guardare stopAlarm
 	*/
 	if (Global->getUsers()%10==0 && executeCleaning && !Global->getAlarm()){
-		if (Global->getPresence()) {
+		if (Global->getPresence() && this->firstWarning) {
 			Global->setWritingBuffer(this->message);
+			this->firstWarning = false;
+		}
+		if (!Global->getPresence()){
+			this->firstWarning=true;
 		}
 		// se è il primo ciclo prendo il tempo iniziale e setto lo stato in "cleaning"
 		if (firstTime){
@@ -37,6 +42,7 @@ void CleaningTask::tick(){
 		//dopo 10 sec lo stato "cleaning" diventa falso
 		if (currentTime - initialTime >= 10000){
 			Global->setCleaning(false);
+			this->firstWarning = true;
 			executeCleaning=false;
 		}
 		firstTime = false;

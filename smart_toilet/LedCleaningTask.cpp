@@ -16,7 +16,9 @@ void LedCleaningTask::tick(){
 	if(Global->isCleaning()){
 		led->switchOn();
 	} else {
-		led->switchOff();
+		if (!Global->getAlarm()){
+			led->switchOff();
+		}
 	}
 }
 

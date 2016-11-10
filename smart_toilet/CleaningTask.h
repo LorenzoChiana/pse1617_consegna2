@@ -8,6 +8,7 @@ class CleaningTask: public Task {
 
 	long currentTime, initialTime;
 	bool executeCleaning, firstTime, userEntered;
+	bool firstWarning;
 	const char* message;
 	GlobalState *Global;
 public:
