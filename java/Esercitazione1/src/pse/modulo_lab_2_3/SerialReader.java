@@ -1,0 +1,25 @@
+package pse.modulo_lab_2_3;
+
+public class SerialReader implements Runnable{
+
+	private SerialCommChannel channel;
+
+	SerialReader(SerialCommChannel channel){
+		this.channel = channel;
+	}		
+	@Override
+	public void run(){
+
+		String msg = new String();
+		
+		while (true){
+			try {
+				msg = channel.receiveMsg();
+			} catch (InterruptedException e) {
+				System.out.println("Reader error");
+			}
+			System.out.println("Message recived: "+ msg);
+			
+		}		
+	}		
+}	

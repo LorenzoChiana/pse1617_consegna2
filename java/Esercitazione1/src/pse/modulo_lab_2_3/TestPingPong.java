@@ -19,13 +19,11 @@ public class TestPingPong {
 		System.out.println("Ready.");		
 
 		
-		while (true){
-			System.out.println("Sending ping");
-			channel.sendMsg("ping");
-			String msg = channel.receiveMsg();
-			System.out.println("Received: "+msg);		
-			Thread.sleep(500);
-		}
+		new Thread(new SerialReader(channel)).start();
+		new Thread(new SerialWriter(channel)).start();
+		
+		channel.close();
+		
 	}
 
 }

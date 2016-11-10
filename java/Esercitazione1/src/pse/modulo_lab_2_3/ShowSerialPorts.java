@@ -1,8 +1,8 @@
 package pse.modulo_lab_2_3;
 
-import gnu.io.CommPortIdentifier;
-
 import java.util.Enumeration;
+
+import gnu.io.CommPortIdentifier;
 
 /**
  * Show the serial ports available on the PC

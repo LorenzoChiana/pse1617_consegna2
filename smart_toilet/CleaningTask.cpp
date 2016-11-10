@@ -25,6 +25,7 @@ void CleaningTask::tick(){
 		non pulisce finché vi è un allarme attivo
 		appena l'allarme viene stoppato si esegue -> guardare stopAlarm
 	*/
+	
 	if (Global->getUsers()%10==0 && executeCleaning && !Global->getAlarm()){
 		if (Global->getPresence() && this->firstWarning) {
 			Global->setWritingBuffer(this->message);
