@@ -19,7 +19,12 @@ void CleaningTask::init(int period){
 
 void CleaningTask::tick(){
 	//Serial.println(Global->getUsers());
-	if (Global->getUsers()%10==0 && executeCleaning){
+	/*
+		commenti sulla revisione: 
+		non pulisce finché vi è un allarme attivo
+		appena l'allarme viene stoppato si esegue -> guardare stopAlarm
+	*/
+	if (Global->getUsers()%10==0 && executeCleaning && !Global->getAlarm()){
 		if (Global->getPresence()) {
 			Global->setWritingBuffer(this->message);
 		}
