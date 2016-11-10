@@ -22,7 +22,6 @@ void MsgTask::tick(){
 			MsgService.sendMsg(getUsers());
 		}
 		if (msg->getContent() == COMMAND_STATE){
-			Serial.println(getState());
 			MsgService.sendMsg(getState());
 		}
 		delete msg;
@@ -46,7 +45,6 @@ char* MsgTask::getState(){
 	} else {
 		strcpy(state,"Libero"); 
 	}
-
 	return state;
 
 
