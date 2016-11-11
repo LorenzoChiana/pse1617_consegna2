@@ -1,0 +1,2 @@
+javac -classpath bin:lib\* -d bin src\pse\consegna2\*
+java -cp bin;lib\RXTXcomm.jar pse.consegna2.Test COMX
