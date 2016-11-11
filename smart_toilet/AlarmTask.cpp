@@ -43,6 +43,8 @@ void AlarmTask::checkMovement() {
       currentTime = millis();
       if ((currentTime - initialTime) > TMAX) {
         Global->setAlarm(true);
+
+        Global->setWritingBuffer(this->message);
         this->firstAlarm = false;
         reset = true;
       }
