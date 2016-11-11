@@ -33,6 +33,8 @@
 #define TSTART_ALARM 2000
 #define TMAX_CLEANING 10000
 
+#define DELAY_LED 250
+
 #define COMMAND_USERS "user"
 #define COMMAND_STATE "state"
 

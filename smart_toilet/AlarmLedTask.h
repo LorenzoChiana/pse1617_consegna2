@@ -9,7 +9,8 @@ class AlarmLedTask: public Task {
   int pin;
   Led* led;
   GlobalState *Global;
-
+  int prevTime, currentTime;
+  bool firstTime;
 public:
 
   AlarmLedTask(int pin, GlobalState *Global);  
