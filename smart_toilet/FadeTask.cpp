@@ -1,5 +1,6 @@
 #include "FadeTask.h"
 #include "Arduino.h"
+#include "config.h"
 
 FadeTask::FadeTask(int pin, int intensity, GlobalState* Global){
 	this->pin = pin;
@@ -15,7 +16,7 @@ void FadeTask::init(int period){
 	currentState = prevState = false;
 
 	brightness = 0;
- 	fadeAmount = 255/(125/period);
+ 	fadeAmount = MAX_BRINGHTNESS/(N_PULSE/period);
  	fade = true;
 }
 
@@ -29,15 +30,15 @@ void FadeTask::tick(){
 	  		if (brightness<0){
 	  			brightness = 0;
 	  		}
-	  		if (brightness>255){
-	  			brightness=255;
+	  		if (brightness>MAX_BRINGHTNESS){
+	  			brightness=MAX_BRINGHTNESS;
 	  		}
-	  		if (brightness <= 0 || brightness >= 255) {
+	  		if (brightness <= 0 || brightness >= MAX_BRINGHTNESS) {
 	    		fadeAmount = -fadeAmount ;
 	  		} 
 	  		led->setIntensity(brightness);
 		// dopo 5 secondi smette lo sciacquone
-		if (currentTime - initialTime > 5000){
+		if (currentTime - initialTime > TMAX_FADE){
 			led->switchOff();	
 			Global->setFlush(false);	
 		}

@@ -1,5 +1,6 @@
 #include "IlluminateTask.h"
 #include "Arduino.h"
+#include "config.h"
 
 IlluminateTask::IlluminateTask(int pin, GlobalState* Global){
 	this->pin = pin;
@@ -29,7 +30,7 @@ void IlluminateTask::tick(){
 		initialTime = millis();
 	} else {
 		currentTime = millis();
-		if ((currentTime - initialTime >= 10000) && !isTurendOff){
+		if ((currentTime - initialTime >= TMAX_ILLUMINATE) && !isTurendOff){
 			led->switchOff();			
 		}
 		prevState = currentState;

@@ -1,6 +1,7 @@
 #include "ButtonImpl.h"
 #include "Arduino.h"
 #include "InputAlarmTask.h"
+#include "config.h"
 
 InputAlarmTask::InputAlarmTask(int pin, GlobalState *Global){
   this->pin = pin;  
@@ -15,7 +16,7 @@ void InputAlarmTask::init(int period){
 void InputAlarmTask::tick(){
   if (button->isPressed()) {
     currentTime = millis();
-    if (currentTime-initialTime>2000){
+    if (currentTime-initialTime > TSTART_ALARM){
     	Global->setAlarmInput(true);
     }
   } else {
