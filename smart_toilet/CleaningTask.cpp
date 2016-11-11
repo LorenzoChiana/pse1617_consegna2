@@ -1,6 +1,7 @@
 
 #include "CleaningTask.h"
 #include "Arduino.h"
+#include "config.h"
 
 CleaningTask::CleaningTask(GlobalState *Global){
 	this->Global = Global;
@@ -41,7 +42,7 @@ void CleaningTask::tick(){
 		}
 		currentTime = millis();
 		//dopo 10 sec lo stato "cleaning" diventa falso
-		if (currentTime - initialTime >= 10000){
+		if (currentTime - initialTime >= TMAX_CLEANING){
 			Global->setCleaning(false);
 			this->firstWarning = true;
 			executeCleaning=false;

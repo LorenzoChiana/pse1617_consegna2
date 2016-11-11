@@ -20,6 +20,8 @@
 
 #define INTENSITY 5
 
+#define CORRECTION_BOUNCE 5
+
 #define TMAX 20000
 
 #define N_PULSE 125
@@ -29,6 +31,7 @@
 #define TMAX_FADE 5000
 #define TMAX_ILLUMINATE 10000
 #define TSTART_ALARM 2000
+#define TMAX_CLEANING 10000
 
 #define COMMAND_USERS "user"
 #define COMMAND_STATE "state"

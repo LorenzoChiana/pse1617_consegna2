@@ -35,7 +35,7 @@ void AlarmTask::checkMovement() {
     prevDistance = currentDistance;
     currentDistance = Global->getDistance();
     float difference = fabs(currentDistance - prevDistance);
-    bool isChanged = (difference > differenceThreshold && difference < 5);
+    bool isChanged = (difference > differenceThreshold && difference < CORRECTION_BOUNCE);
     if (isChanged || !Global->getPresence() || reset) {
       initialTime = millis();
       reset = false;
