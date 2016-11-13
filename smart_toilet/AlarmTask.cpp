@@ -17,14 +17,17 @@ void AlarmTask::init(int period) {
 }
 
 void AlarmTask::tick() {
+  //Se non c'è l'allarme controlla che non si sia mosso 
   if (!Global->getAlarm() && firstAlarm) {
     checkMovement();
     checkAlarmInput();
   } else {
+    //Se è il primo allarme manda un messaggio
     if (this->firstAlarm) {
       this->firstAlarm = false;
       Global->setWritingBuffer(this->message);
     }
+    //Controlla l'input di stop
     checkAlarmStop();
 
   }
@@ -36,6 +39,7 @@ void AlarmTask::checkMovement() {
     currentDistance = Global->getDistance();
     float difference = fabs(currentDistance - prevDistance);
     bool isChanged = (difference > differenceThreshold && difference < CORRECTION_BOUNCE);
+    //Resetta il cronometro dei moviementi quando rileva presenza e si è mosso
     if (isChanged || !Global->getPresence() || reset) {
       initialTime = millis();
       reset = false;

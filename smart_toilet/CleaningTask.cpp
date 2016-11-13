@@ -20,9 +20,7 @@ void CleaningTask::init(int period){
 }
 
 void CleaningTask::tick(){
-	//Serial.println(Global->getUsers());
 	/*
-		commenti sulla revisione: 
 		non pulisce finché vi è un allarme attivo
 		appena l'allarme viene stoppato si esegue -> guardare stopAlarm
 	*/
