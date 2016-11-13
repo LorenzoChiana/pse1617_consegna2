@@ -9,6 +9,7 @@ class DetectMotionTask: public Task {
   int pin;
   PIRSensor* pir;
   GlobalState *Global;
+
 public:
 
   DetectMotionTask(int pin, GlobalState *Global);  

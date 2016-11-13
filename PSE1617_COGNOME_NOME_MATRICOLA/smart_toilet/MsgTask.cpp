@@ -12,7 +12,8 @@ void MsgTask::init(int period){
 	MsgService.init();
 }
 
-void MsgTask::tick(){	
+void MsgTask::tick(){
+	//Se c'è un messaggio ed è un comando gli risponde
 	if (MsgService.isMsgAvailable()) {
 		Msg* msg = MsgService.receiveMsg();  
 		if (msg->getContent() == COMMAND_USERS){
@@ -23,7 +24,7 @@ void MsgTask::tick(){
 		}
 		delete msg;
 	}
-
+	//Ogni clock stampa ciò che c'è nel buffer se è pieno
 	flushBuffer();
 }
 

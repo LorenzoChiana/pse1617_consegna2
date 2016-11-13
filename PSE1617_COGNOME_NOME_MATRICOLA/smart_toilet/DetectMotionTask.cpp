@@ -8,7 +8,7 @@ DetectMotionTask::DetectMotionTask(int pin, GlobalState *Global){
   
 void DetectMotionTask::init(int period){
   Task::init(period);
-  pir = new PIRSensor(pin);   
+  pir = new PIRSensor(pin);    
 }
   
 void DetectMotionTask::tick(){
