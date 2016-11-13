@@ -40,6 +40,8 @@
 
 #define STILL_DISTANCE_THRESHOLD 0.05
 
+#define CLOCK 30
+
 #include "AlarmTask.h"
 #include "GlobalState.h"
 #include "CleaningTask.h"

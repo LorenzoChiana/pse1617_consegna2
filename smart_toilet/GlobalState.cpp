@@ -90,15 +90,21 @@ void GlobalState::resetUsers(){
 }
 
 void GlobalState::setWritingBuffer(char* s){
-	if (strlen(s)==0){
-		strcpy(this->writingBuffer,s);
-	} else {
-		if (strlen(this->writingBuffer)>0){
-			strcat(this->writingBuffer,"\n");
-			strcat(this->writingBuffer,s);
-		} else {
+	if (this->bufferAvalible){
+		noInterrupts();
+		this->bufferAvalible = false;
+		if (strlen(s)==0){
 			strcpy(this->writingBuffer,s);
+		} else {
+			if (strlen(this->writingBuffer)>0){
+				strcat(this->writingBuffer,"\n");
+				strcat(this->writingBuffer,s);
+			} else {
+				strcpy(this->writingBuffer,s);
+			}
 		}
+		this->bufferAvalible = true;
+		interrupts();
 	}
 }
 
